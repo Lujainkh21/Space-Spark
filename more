@@ -442,19 +442,6 @@ function checkAnswer(answer) {
   }
 }
 
-window.onload = () => {
-  setTimeout(() => {
-    document.getElementById("splash").style.display = "none";
-    generateQuestion();
-  }, 1800);
-};
-</script>
-
-</body>
-</html>
-
- 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -501,16 +488,13 @@ body {
   height: 250px;
   border-radius: 50% 50% 0 0;
   background: linear-gradient(180deg, #bcb5c9, #756d86);
-  z-index: 1;
 }
 
 #splash {
   position: fixed;
   inset: 0;
   z-index: 20;
-  background:
-    radial-gradient(circle at 30% 20%, #4c1d95, transparent 25%),
-    linear-gradient(180deg, #020617, #071b45);
+  background: linear-gradient(180deg, #020617, #071b45);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -554,7 +538,6 @@ body {
 
 .logo p {
   margin: 0;
-  opacity: .9;
 }
 
 .back-btn {
@@ -569,7 +552,6 @@ body {
   border-radius: 24px;
   font-size: 20px;
   font-weight: bold;
-  z-index: 5;
 }
 
 .title {
@@ -578,18 +560,18 @@ body {
 }
 
 .title h1 {
-  font-size: 76px;
+  font-size: 58px;
   margin: 0;
 }
 
 .title p {
-  font-size: 28px;
+  font-size: 22px;
   margin: 8px 0;
 }
 
 .practice-area {
-  width: 850px;
-  margin: 45px auto 0;
+  width: 980px;
+  margin: 35px auto 0;
   text-align: center;
 }
 
@@ -597,55 +579,56 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 26px;
-  margin-bottom: 35px;
+  gap: 14px;
+  margin-bottom: 25px;
 }
 
 .star-group {
-  width: 210px;
-  min-height: 120px;
+  width: 160px;
+  min-height: 90px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   color: #facc15;
-  font-size: 44px;
-  gap: 6px;
+  font-size: 34px;
+  gap: 3px;
   text-shadow: 0 4px 0 rgba(0,0,0,.25);
 }
 
 .operator {
-  font-size: 80px;
+  font-size: 58px;
   font-weight: 900;
 }
 
 .qmark {
-  font-size: 88px;
+  font-size: 68px;
   font-weight: 900;
   color: #f97316;
-  text-shadow: 0 4px 0 rgba(0,0,0,.25);
 }
 
 .instruction {
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 900;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .options {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  width: 650px;
+  margin: 0 auto;
   gap: 18px;
 }
 
 .option {
-  min-height: 100px;
+  min-height: 75px;
   border: none;
   border-radius: 26px;
   background: rgba(255,255,255,.12);
   border: 2px solid rgba(255,255,255,.35);
   color: #facc15;
-  font-size: 34px;
+  font-size: 26px;
   cursor: pointer;
   transition: .2s;
 }
@@ -658,7 +641,7 @@ body {
 .message {
   min-height: 34px;
   margin-top: 20px;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 900;
 }
 
@@ -672,11 +655,6 @@ body {
   font-size: 22px;
   font-weight: 900;
   cursor: pointer;
-}
-
-@keyframes pop {
-  from { transform: scale(.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
 }
 </style>
 </head>
@@ -718,7 +696,7 @@ body {
         <div class="qmark">?</div>
       </div>
 
-      <div class="instruction">Choose the group with the correct number of stars</div>
+      <div class="instruction">Choose the correct group</div>
       <div class="options" id="options"></div>
       <div class="message" id="message"></div>
 
@@ -747,9 +725,7 @@ function generateQuestion() {
 
   while (answers.length < 4) {
     let wrong = Math.floor(Math.random() * 10) + 1;
-    if (!answers.includes(wrong)) {
-      answers.push(wrong);
-    }
+    if (!answers.includes(wrong)) answers.push(wrong);
   }
 
   answers.sort(() => Math.random() - 0.5);
@@ -770,10 +746,10 @@ function checkAnswer(answer) {
   const message = document.getElementById("message");
 
   if (answer === correct) {
-    message.textContent = "🌟 Great job! You counted it right!";
+    message.textContent = "🌟 Great job!";
     message.style.color = "#22c55e";
   } else {
-    message.textContent = "💫 Almost there! Count the stars again.";
+    message.textContent = "💫 Try again!";
     message.style.color = "#f97316";
   }
 }
@@ -787,6 +763,15 @@ window.onload = () => {
 </script>
 
 </body>
+</html>window.onload = () => {
+  setTimeout(() => {
+    document.getElementById("splash").style.display = "none";
+    generateQuestion();
+  }, 1800);
+};
+</script>
+
+</body>
 </html>
+
  
-</html>
