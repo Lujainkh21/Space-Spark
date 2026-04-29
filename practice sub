@@ -66,53 +66,53 @@ body {
 }
 
 .splash-card h1 {
-  font-size: 54px;
+  font-size: 58px;
   margin: 0;
 }
 
 .splash-card p {
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .game-wrap {
   position: relative;
   z-index: 3;
   min-height: 100vh;
-  padding: 30px 60px;
+  padding: 35px 60px;
 }
 
 .back-btn {
   position: absolute;
   left: 50px;
-  top: 110px;
+  top: 120px;
   color: white;
   text-decoration: none;
   background: rgba(76,29,149,.85);
   border: 2px solid #7c3aed;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 24px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .title {
   text-align: center;
-  margin-top: 25px;
+  margin-top: 35px;
 }
 
 .title h1 {
-  font-size: 54px;
+  font-size: 58px;
   margin: 0;
 }
 
 .title p {
-  font-size: 21px;
+  font-size: 22px;
   margin: 8px 0;
 }
 
 .practice-area {
-  width: 760px;
-  margin: 25px auto 0;
+  width: 980px;
+  margin: 35px auto 0;
   text-align: center;
 }
 
@@ -120,78 +120,80 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 22px;
-  margin-bottom: 22px;
+  gap: 28px;
+  margin-bottom: 30px;
 }
 
 .star-group {
-  width: 150px;
-  min-height: 85px;
+  width: 180px;
+  min-height: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   color: #facc15;
-  font-size: 30px;
-  gap: 4px;
-  padding: 6px 10px;
+  font-size: 34px;
+  gap: 6px;
+  padding: 8px 12px;
 }
 
 .operator {
-  font-size: 54px;
+  font-size: 60px;
   font-weight: 900;
+  margin: 0 10px;
 }
 
 .qmark {
-  font-size: 62px;
+  font-size: 70px;
   color: #f97316;
+  margin-left: 10px;
 }
 
 .instruction {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 560px;
+  width: 650px;
   margin: 0 auto;
-  gap: 14px;
+  gap: 18px;
 }
 
 .option {
-  min-height: 68px;
+  min-height: 75px;
   border: none;
   border-radius: 26px;
   background: rgba(255,255,255,.12);
   border: 2px solid rgba(255,255,255,.35);
   color: #facc15;
-  font-size: 24px;
+  font-size: 26px;
   cursor: pointer;
 }
 
 .option:hover {
-  transform: translateY(-5px) scale(1.02);
+  transform: translateY(-6px) scale(1.03);
   background: rgba(168,85,247,.28);
 }
 
 .message {
-  min-height: 30px;
-  margin-top: 18px;
-  font-size: 22px;
+  min-height: 34px;
+  margin-top: 20px;
+  font-size: 24px;
   font-weight: 900;
 }
 
 .next-btn {
-  margin-top: 12px;
-  padding: 12px 28px;
+  margin-top: 15px;
+  padding: 14px 30px;
   border: none;
   border-radius: 24px;
   background: linear-gradient(90deg, #7c3aed, #38bdf8);
   color: white;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
   cursor: pointer;
 }
@@ -251,8 +253,8 @@ function makeStars(number) {
 function generateQuestion() {
   answered = false;
 
-  // أرقام صغيرة ومتناسقة + بدون صفر
-  num1 = Math.floor(Math.random() * 4) + 3; // 3 إلى 6
+  // نفس مستوى الجمع (ما يكبر الشكل)
+  num1 = Math.floor(Math.random() * 4) + 3; // 3–6
   num2 = Math.floor(Math.random() * (num1 - 1)) + 1;
   correct = num1 - num2;
 
@@ -263,7 +265,7 @@ function generateQuestion() {
   let answers = [correct];
 
   while (answers.length < 4) {
-    let wrong = Math.floor(Math.random() * 6) + 1; // بدون 0
+    let wrong = Math.floor(Math.random() * 5) + 1; // بدون 0
     if (!answers.includes(wrong)) answers.push(wrong);
   }
 
