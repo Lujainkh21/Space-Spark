@@ -149,12 +149,6 @@ body {
   margin-left: 10px;
 }
 
-.instruction {
-  font-size: 22px;
-  font-weight: 900;
-  margin-bottom: 20px;
-}
-
 .options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -165,7 +159,6 @@ body {
 
 .option {
   min-height: 75px;
-  border: none;
   border-radius: 26px;
   background: rgba(255,255,255,.12);
   border: 2px solid rgba(255,255,255,.35);
@@ -174,13 +167,7 @@ body {
   cursor: pointer;
 }
 
-.option:hover {
-  transform: translateY(-6px) scale(1.03);
-  background: rgba(168,85,247,.28);
-}
-
 .message {
-  min-height: 34px;
   margin-top: 20px;
   font-size: 24px;
   font-weight: 900;
@@ -189,12 +176,11 @@ body {
 .next-btn {
   margin-top: 15px;
   padding: 14px 30px;
-  border: none;
   border-radius: 24px;
+  border: none;
   background: linear-gradient(90deg, #7c3aed, #38bdf8);
   color: white;
   font-size: 22px;
-  font-weight: 900;
   cursor: pointer;
 }
 </style>
@@ -218,7 +204,7 @@ body {
 
     <section class="title">
       <h1>Subtraction Practice</h1>
-      <p>✨ Count the stars left and choose the same group ✨</p>
+      <p>✨ Count the stars left ✨</p>
     </section>
 
     <section class="practice-area">
@@ -230,7 +216,6 @@ body {
         <div class="qmark">?</div>
       </div>
 
-      <div class="instruction">Choose the correct group</div>
       <div class="options" id="options"></div>
       <div class="message" id="message"></div>
 
@@ -245,17 +230,36 @@ let num1, num2, correct;
 let questionCount = 0;
 let maxQuestions = 5;
 let answered = false;
+let usedQuestions = [];
 
-function makeStars(number) {
-  return "⭐".repeat(number);
+// أسئلة جاهزة (تمنع تكرار الناتج 1)
+const questions = [
+  [3,1],
+  [4,1],
+  [4,2],
+  [5,1],
+  [5,2],
+  [5,3]
+];
+
+function makeStars(n) {
+  return "⭐".repeat(n);
 }
 
 function generateQuestion() {
   answered = false;
 
-  // نفس مستوى الجمع (ما يكبر الشكل)
-  num1 = Math.floor(Math.random() * 4) + 3; // 3–6
-  num2 = Math.floor(Math.random() * (num1 - 1)) + 1;
+  let q, key;
+
+  do {
+    q = questions[Math.floor(Math.random() * questions.length)];
+    num1 = q[0];
+    num2 = q[1];
+    key = num1 + "-" + num2;
+  } while (usedQuestions.includes(key));
+
+  usedQuestions.push(key);
+
   correct = num1 - num2;
 
   document.getElementById("stars1").textContent = makeStars(num1);
@@ -265,7 +269,7 @@ function generateQuestion() {
   let answers = [correct];
 
   while (answers.length < 4) {
-    let wrong = Math.floor(Math.random() * 5) + 1; // بدون 0
+    let wrong = Math.floor(Math.random() * 5) + 1;
     if (!answers.includes(wrong)) answers.push(wrong);
   }
 
@@ -274,27 +278,27 @@ function generateQuestion() {
   const options = document.getElementById("options");
   options.innerHTML = "";
 
-  answers.forEach(answer => {
+  answers.forEach(a => {
     const btn = document.createElement("button");
     btn.className = "option";
-    btn.textContent = makeStars(answer);
-    btn.onclick = () => checkAnswer(answer);
+    btn.textContent = makeStars(a);
+    btn.onclick = () => checkAnswer(a);
     options.appendChild(btn);
   });
 }
 
-function checkAnswer(answer) {
+function checkAnswer(a) {
   if (answered) return;
 
-  const message = document.getElementById("message");
+  const msg = document.getElementById("message");
 
-  if (answer === correct) {
-    message.textContent = "🌟 Great job!";
-    message.style.color = "#22c55e";
+  if (a === correct) {
+    msg.textContent = "🌟 Great job!";
+    msg.style.color = "#22c55e";
     answered = true;
   } else {
-    message.textContent = "💫 Try again!";
-    message.style.color = "#f97316";
+    msg.textContent = "💫 Try again!";
+    msg.style.color = "#f97316";
   }
 }
 
@@ -306,7 +310,6 @@ function nextQuestion() {
   if (questionCount >= maxQuestions) {
     document.querySelector(".practice-area").innerHTML = `
       <h1>🎉 Awesome!</h1>
-      <p>You finished the practice!</p>
       <button class="next-btn" onclick="goToQuiz()">Go to Quiz 🚀</button>
     `;
     return;
