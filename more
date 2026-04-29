@@ -1,0 +1,21 @@
+<header class="topbar"> <!-- كود فوق باليسار-->
+      <div class="logo">
+        <h2>SpaceSpark</h2>
+        <p>Learn • Explore • Grow</p>
+      </div>
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo p {
+  margin: 0;
+  opacity: .9;
+}
+.logo h2 {
+  margin: 0;
+  font-size: 32px;
+}
+
+ 
