@@ -455,8 +455,6 @@ window.onload = () => {
 
  
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -503,13 +501,16 @@ body {
   height: 250px;
   border-radius: 50% 50% 0 0;
   background: linear-gradient(180deg, #bcb5c9, #756d86);
+  z-index: 1;
 }
 
 #splash {
   position: fixed;
   inset: 0;
   z-index: 20;
-  background: linear-gradient(180deg, #020617, #071b45);
+  background:
+    radial-gradient(circle at 30% 20%, #4c1d95, transparent 25%),
+    linear-gradient(180deg, #020617, #071b45);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -546,12 +547,29 @@ body {
   align-items: center;
 }
 
-.score-pill {
-  background: rgba(76, 29, 149, .85);
-  border-radius: 28px;
-  padding: 14px 28px;
-  font-size: 30px;
-  font-weight: 900;
+.logo h2 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.logo p {
+  margin: 0;
+  opacity: .9;
+}
+
+.back-btn {
+  position: absolute;
+  left: 50px;
+  top: 120px;
+  color: white;
+  text-decoration: none;
+  background: rgba(76,29,149,.85);
+  border: 2px solid #7c3aed;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 5;
 }
 
 .title {
@@ -569,13 +587,9 @@ body {
   margin: 8px 0;
 }
 
-.game-card {
-  width: 800px;
-  margin: 35px auto 0;
-  padding: 28px;
-  border-radius: 36px;
-  background: rgba(20, 8, 65, .78);
-  border: 3px solid #a855f7;
+.practice-area {
+  width: 850px;
+  margin: 45px auto 0;
   text-align: center;
 }
 
@@ -583,29 +597,39 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 22px;
+  gap: 26px;
+  margin-bottom: 35px;
 }
 
-.star-box {
-  background: transparent;
-  box-shadow: none;
-  color: #facc15;
+.star-group {
+  width: 210px;
+  min-height: 120px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  color: #facc15;
+  font-size: 44px;
   gap: 6px;
-  font-size: 42px;
+  text-shadow: 0 4px 0 rgba(0,0,0,.25);
 }
 
 .operator {
-  font-size: 70px;
+  font-size: 80px;
   font-weight: 900;
 }
 
 .qmark {
-  font-size: 80px;
+  font-size: 88px;
+  font-weight: 900;
   color: #f97316;
+  text-shadow: 0 4px 0 rgba(0,0,0,.25);
+}
+
+.instruction {
+  font-size: 25px;
+  font-weight: 900;
+  margin-bottom: 22px;
 }
 
 .options {
@@ -615,18 +639,44 @@ body {
 }
 
 .option {
-  height: 90px;
-  border-radius: 24px;
+  min-height: 100px;
   border: none;
-  font-size: 50px;
+  border-radius: 26px;
+  background: rgba(255,255,255,.12);
+  border: 2px solid rgba(255,255,255,.35);
+  color: #facc15;
+  font-size: 34px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.option:hover {
+  transform: translateY(-6px) scale(1.03);
+  background: rgba(168,85,247,.28);
+}
+
+.message {
+  min-height: 34px;
+  margin-top: 20px;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.next-btn {
+  margin-top: 15px;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 24px;
+  background: linear-gradient(90deg, #7c3aed, #38bdf8);
+  color: white;
+  font-size: 22px;
   font-weight: 900;
   cursor: pointer;
 }
 
-.message {
-  margin-top: 15px;
-  font-size: 22px;
-  font-weight: bold;
+@keyframes pop {
+  from { transform: scale(.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 </style>
 </head>
@@ -635,47 +685,53 @@ body {
 
 <section id="splash">
   <div class="splash-card">
-    <h1>Addition</h1>
-    <p>Let’s count stars!</p>
+    <h1>Addition Practice</h1>
+    <p>Let’s count together!</p>
   </div>
 </section>
 
 <div class="space-page">
   <div class="moon-ground"></div>
 
+  <a href="number.html" class="back-btn">← Back</a>
+
   <main class="game-wrap">
     <header class="topbar">
-      <h2>⭐ <span id="score">0</span></h2>
+      <div class="logo">
+        <h2>SpaceSpark</h2>
+        <p>Learn • Explore • Grow</p>
+      </div>
     </header>
 
     <section class="title">
-      <h1>Addition</h1>
-      <p>✨ Count the stars ✨</p>
+      <p>Numbers Planet</p>
+      <h1>Addition Practice</h1>
+      <p>✨ Count the stars and choose the same total ✨</p>
     </section>
 
-    <section class="game-card">
-
+    <section class="practice-area">
       <div class="question">
-        <div class="star-box" id="stars1"></div>
+        <div class="star-group" id="stars1"></div>
         <div class="operator">+</div>
-        <div class="star-box" id="stars2"></div>
+        <div class="star-group" id="stars2"></div>
         <div class="operator">=</div>
         <div class="qmark">?</div>
       </div>
 
+      <div class="instruction">Choose the group with the correct number of stars</div>
       <div class="options" id="options"></div>
       <div class="message" id="message"></div>
 
+      <button class="next-btn" onclick="generateQuestion()">Next Practice 🚀</button>
     </section>
   </main>
 </div>
 
 <script>
 let num1, num2, correct;
-let score = 0;
 
-function makeStars(n) {
-  return "⭐".repeat(n);
+function makeStars(number) {
+  return "⭐".repeat(number);
 }
 
 function generateQuestion() {
@@ -685,12 +741,15 @@ function generateQuestion() {
 
   document.getElementById("stars1").textContent = makeStars(num1);
   document.getElementById("stars2").textContent = makeStars(num2);
+  document.getElementById("message").textContent = "";
 
   let answers = [correct];
 
   while (answers.length < 4) {
     let wrong = Math.floor(Math.random() * 10) + 1;
-    if (!answers.includes(wrong)) answers.push(wrong);
+    if (!answers.includes(wrong)) {
+      answers.push(wrong);
+    }
   }
 
   answers.sort(() => Math.random() - 0.5);
@@ -698,27 +757,24 @@ function generateQuestion() {
   const options = document.getElementById("options");
   options.innerHTML = "";
 
-  answers.forEach(ans => {
+  answers.forEach(answer => {
     const btn = document.createElement("button");
     btn.className = "option";
-    btn.textContent = ans;
-    btn.onclick = () => checkAnswer(ans);
+    btn.textContent = makeStars(answer);
+    btn.onclick = () => checkAnswer(answer);
     options.appendChild(btn);
   });
 }
 
-function checkAnswer(ans) {
-  const msg = document.getElementById("message");
+function checkAnswer(answer) {
+  const message = document.getElementById("message");
 
-  if (ans === correct) {
-    score += 10;
-    document.getElementById("score").textContent = score;
-    msg.textContent = "🎉 Correct!";
-    msg.style.color = "lightgreen";
-    setTimeout(generateQuestion, 800);
+  if (answer === correct) {
+    message.textContent = "🌟 Great job! You counted it right!";
+    message.style.color = "#22c55e";
   } else {
-    msg.textContent = "Try again!";
-    msg.style.color = "orange";
+    message.textContent = "💫 Almost there! Count the stars again.";
+    message.style.color = "#f97316";
   }
 }
 
@@ -731,4 +787,6 @@ window.onload = () => {
 </script>
 
 </body>
+</html>
+ 
 </html>
