@@ -251,9 +251,9 @@ function makeStars(number) {
 function generateQuestion() {
   answered = false;
 
-  // تقليل الأرقام عشان ما يكبر الشكل
-  num1 = Math.floor(Math.random() * 5) + 3; 
-  num2 = Math.floor(Math.random() * num1) + 1;
+  // أرقام صغيرة ومتناسقة + بدون صفر
+  num1 = Math.floor(Math.random() * 4) + 3; // 3 إلى 6
+  num2 = Math.floor(Math.random() * (num1 - 1)) + 1;
   correct = num1 - num2;
 
   document.getElementById("stars1").textContent = makeStars(num1);
@@ -263,7 +263,7 @@ function generateQuestion() {
   let answers = [correct];
 
   while (answers.length < 4) {
-    let wrong = Math.floor(Math.random() * 8);
+    let wrong = Math.floor(Math.random() * 6) + 1; // بدون 0
     if (!answers.includes(wrong)) answers.push(wrong);
   }
 
@@ -275,7 +275,7 @@ function generateQuestion() {
   answers.forEach(answer => {
     const btn = document.createElement("button");
     btn.className = "option";
-    btn.textContent = answer === 0 ? "0" : makeStars(answer);
+    btn.textContent = makeStars(answer);
     btn.onclick = () => checkAnswer(answer);
     options.appendChild(btn);
   });
