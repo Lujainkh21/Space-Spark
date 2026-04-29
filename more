@@ -442,6 +442,11 @@ function checkAnswer(answer) {
   }
 }
 
+ 
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -525,21 +530,6 @@ body {
   padding: 35px 60px;
 }
 
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo h2 {
-  margin: 0;
-  font-size: 32px;
-}
-
-.logo p {
-  margin: 0;
-}
-
 .back-btn {
   position: absolute;
   left: 50px;
@@ -579,32 +569,35 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 25px;
+  gap: 28px;
+  margin-bottom: 30px;
 }
 
 .star-group {
-  width: 160px;
-  min-height: 90px;
+  width: 180px;
+  min-height: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   color: #facc15;
   font-size: 34px;
-  gap: 3px;
+  gap: 6px;
+  padding: 8px 12px;
   text-shadow: 0 4px 0 rgba(0,0,0,.25);
 }
 
 .operator {
-  font-size: 58px;
+  font-size: 60px;
   font-weight: 900;
+  margin: 0 10px;
 }
 
 .qmark {
-  font-size: 68px;
+  font-size: 70px;
   font-weight: 900;
   color: #f97316;
+  margin-left: 10px;
 }
 
 .instruction {
@@ -674,15 +667,8 @@ body {
   <a href="number.html" class="back-btn">← Back</a>
 
   <main class="game-wrap">
-    <header class="topbar">
-      <div class="logo">
-        <h2>SpaceSpark</h2>
-        <p>Learn • Explore • Grow</p>
-      </div>
-    </header>
 
     <section class="title">
-      <p>Numbers Planet</p>
       <h1>Addition Practice</h1>
       <p>✨ Count the stars and choose the same total ✨</p>
     </section>
@@ -702,6 +688,7 @@ body {
 
       <button class="next-btn" onclick="generateQuestion()">Next Practice 🚀</button>
     </section>
+
   </main>
 </div>
 
@@ -763,15 +750,4 @@ window.onload = () => {
 </script>
 
 </body>
-</html>window.onload = () => {
-  setTimeout(() => {
-    document.getElementById("splash").style.display = "none";
-    generateQuestion();
-  }, 1800);
-};
-</script>
-
-</body>
 </html>
-
- 
