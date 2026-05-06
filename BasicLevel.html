@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Numbers Planet - Basic Level</title>
+ 
+  <style>
+    body {
+  text-align: center;
+  font-family: Arial;
+  background: linear-gradient(#0b1a3a, #1e2a5a);
+  color: white;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  padding: 20px;
+}
+
+.card {
+  background: #ffffff20;
+  padding: 10px;
+  background:
+    linear-gradient(rgba(10, 7, 35, 0.25), rgba(10, 7, 35, 0.35)),
+    url("background.png") center/cover no-repeat;
+   
+  border-radius: 15px;
+}
+
+
+
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.card img{
+    height: 250px;
+    width: 200px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#im{
+height: 200px;
+    width: 150px;
+}
+ 
+#im{
+  padding-top: 20px;
+    height: 200px;
+    width: 150px;
+}
+
+.logo h2 {
+  margin: 0;
+  font-size: 28px;
+  padding-left: 40px;
+  padding-top: 25px;
+}
+
+.logo p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.8;
+   padding-left: 40px;
+}
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">
+    <h2>SpaceSpark</h2>
+    <p>Learn • Explore • Grow</p>
+  </div>
+
+ 
+</header>
+  
+
+      <dive>
+<h1>🪐 Basic Level</h1>
+
+<!-- الصفحة الأولى -->
+<div id="page1" class="page active">
+
+  <div class="grid">
+    <div class="card">
+      <img src="1.png">
+      <p>One</p>
+      <button onclick="playSound('one.MP4')">🔊</button>
+    </div>
+
+    <div class="card">
+      <img src="2.png">
+      <p>Two</p>
+      <button onclick="playSound('two.MP4')">🔊</button>
+    </div>
+
+    <div class="card">
+      <img src="3.png">
+      <p>Three</p>
+      <button onclick="playSound('three.MP4')">🔊</button>
+    </div>
+
+    <div class="card">
+      <img src="4.png">
+      <p>Four</p>
+      <button onclick="playSound('four.MP4')">🔊</button>
+    </div>
+
+    <div class="card">
+      <img src="5.png">
+      <p>Five</p>
+      <button onclick="playSound('five.MP4')">🔊</button>
+    </div>
+  </div>
+
+  <button onclick="nextPage()" id="but">Next ➡️</button>
+</div>
+
+
+<!-- الصفحة الثانية -->
+<div id="page2" class="page">
+
+  <div class="grid">
+    <div class="card">
+      <img src="6.png">
+      <p>Six</p>
+      <button onclick="playSound('six.MP4')">🔊</button>
+    </div>
+
+    <div class="card">
+      <img src="7.png">
+      <p>Seven</p>
+      <button onclick="playSound('seven.MP4')">🔊</button>
+    </div>
+
+    <div class="card">
+      <img src="8.png">
+      <p>Eight</p>
+      <button onclick="playSound('eighth.MP4')">🔊</button>
+    </div>
+
+    <div class="card" >
+      <img id="im" src="9.png">
+      <p>Nine</p>
+      <button onclick="playSound('nine.MP4')">🔊</button>
+    </div>
+
+    <div class="card">
+      <img id="im"  src="10.png">
+      <p>Ten</p>
+      <button onclick="playSound('ten.MP4')">🔊</button>
+    </div>
+  </div>
+  <button onclick="prevPage()">⬅️ Back</button>
+  <a href="basicquize.html">
+  <button >Next ➡️</button>
+  </a>
+</div>
+
+
+
+
+<script>
+  function nextPage() {
+  document.getElementById("page1").classList.remove("active");
+  document.getElementById("page2").classList.add("active");
+}
+
+function prevPage() {
+  document.getElementById("page2").classList.remove("active");
+  document.getElementById("page1").classList.add("active");
+}
+
+function playSound(file) {
+  let audio = new Audio(file);
+  audio.play();
+}
+
+
+</script>
+</body>
+</html>
+
